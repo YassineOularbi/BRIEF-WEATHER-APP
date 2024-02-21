@@ -7,4 +7,5 @@ public class CityHistory {
     private Integer historicalTemperature;
     private Integer historicalHumidity;
     private Integer historicalWindSpeed;
+
 }
