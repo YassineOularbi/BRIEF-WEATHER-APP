@@ -15,4 +15,62 @@ public class CityHistory {
         this.historicalHumidity = historicalHumidity;
         this.historicalWindSpeed = historicalWindSpeed;
     }
+
+    public Integer getHistoricalDataId() {
+
+        return historicalDataId;
+    }
+
+    public void setHistoricalDataId(Integer historicalDataId) {
+
+        this.historicalDataId = historicalDataId;
+    }
+
+    public Integer getCityId() {
+
+        return cityId;
+    }
+
+    public void setCityId(Integer cityId) {
+
+        this.cityId = cityId;
+    }
+
+    public LocalDate getEventDate() {
+
+        return eventDate;
+    }
+
+    public void setEventDate(LocalDate eventDate) {
+
+        this.eventDate = eventDate;
+    }
+
+    public Integer getHistoricalTemperature() {
+
+        return historicalTemperature;
+    }
+
+    public void setHistoricalTemperature(Integer historicalTemperature) {
+        this.historicalTemperature = historicalTemperature;
+    }
+
+    public Integer getHistoricalHumidity() {
+
+        return historicalHumidity;
+    }
+
+    public void setHistoricalHumidity(Integer historicalHumidity) {
+
+        this.historicalHumidity = historicalHumidity;
+    }
+
+    public Integer getHistoricalWindSpeed() {
+
+        return historicalWindSpeed;
+    }
+
+    public void setHistoricalWindSpeed(Integer historicalWindSpeed){
+        this.historicalWindSpeed = historicalWindSpeed;
+    }
 }
