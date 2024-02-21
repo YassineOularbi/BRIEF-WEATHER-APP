@@ -12,4 +12,53 @@ public class City {
         this.currentWindSpeed = null;
     }
 
+    public Integer getCityId() {
+
+        return cityId;
+    }
+
+    public void setCityId(Integer cityId) {
+
+        this.cityId = cityId;
+    }
+
+    public String getCityName() {
+
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+
+        this.cityName = cityName;
+    }
+
+    public Integer getCurrentTemperature() {
+
+        return currentTemperature;
+    }
+
+    public void setCurrentTemperature(Integer currentTemperature) {
+
+        this.currentTemperature = currentTemperature;
+    }
+
+    public Integer getCurrentHumidity() {
+
+        return currentHumidity;
+    }
+
+    public void setCurrentHumidity(Integer currentHumidity) {
+
+        this.currentHumidity = currentHumidity;
+    }
+
+    public Integer getCurrentWindSpeed() {
+
+        return currentWindSpeed;
+    }
+
+    public void setCurrentWindSpeed(Integer currentWindSpeed) {
+
+        this.currentWindSpeed = currentWindSpeed;
+    }
 }
