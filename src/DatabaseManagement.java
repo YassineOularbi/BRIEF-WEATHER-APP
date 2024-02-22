@@ -16,13 +16,13 @@ public class DatabaseManagement {
         try (PreparedStatement statement = connection.prepareStatement(getDataCity);
              ResultSet resultSet = statement.executeQuery()) {
             while (resultSet.next()) {
-                CityService cityService = new CityService(0, "", 0, 0, 0);
-                cityService.setCityId(resultSet.getInt("cityId"));
-                cityService.setCityName(resultSet.getString("cityName"));
-                cityService.setCurrentTemperature(resultSet.getInt("currentTemperature"));
-                cityService.setCurrentHumidity(resultSet.getInt("currentHumidity"));
-                cityService.setCurrentWindSpeed(resultSet.getInt("currentWindSpeed"));
-                arrayCity.add(cityService);
+                City city = new City();
+                city.setCityId(resultSet.getInt("cityId"));
+                city.setCityName(resultSet.getString("cityName"));
+                city.setCurrentTemperature(resultSet.getInt("currentTemperature"));
+                city.setCurrentHumidity(resultSet.getInt("currentHumidity"));
+                city.setCurrentWindSpeed(resultSet.getInt("currentWindSpeed"));
+                arrayCity.add(city);
             }
         }
         return arrayCity;

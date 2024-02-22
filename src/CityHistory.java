@@ -1,20 +1,19 @@
 import java.time.LocalDate;
 
-public abstract class CityHistory {
+public class CityHistory {
     private Integer historicalDataId;
     private Integer cityId;
     private LocalDate eventDate;
     private Integer historicalTemperature;
     private Integer historicalHumidity;
     private Integer historicalWindSpeed;
-
-    public CityHistory(Integer historicalDataId, Integer cityId, LocalDate eventDate, Integer historicalTemperature, Integer historicalHumidity, Integer historicalWindSpeed) {
-        this.historicalDataId = historicalDataId;
-        this.cityId = cityId;
-        this.eventDate = eventDate;
-        this.historicalTemperature = historicalTemperature;
-        this.historicalHumidity = historicalHumidity;
-        this.historicalWindSpeed = historicalWindSpeed;
+    public CityHistory() {
+        this.historicalDataId = null;
+        this.cityId = null;
+        this.eventDate = null;
+        this.historicalTemperature = null;
+        this.historicalHumidity = null;
+        this.historicalWindSpeed = null;
     }
 
     public Integer getHistoricalDataId() {
