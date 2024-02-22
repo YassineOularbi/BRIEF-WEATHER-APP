@@ -27,5 +27,18 @@ public class DatabaseManagement {
         }
         return arrayCity;
     }
+    public static void setDataCity(City city) throws SQLException {
+        Connection connection = getConnection();
+        String setDataCity = "INSERT INTO City (cityId, cityName, currentTemperature, currentHumidity, currentWindSpeed) values (?, ?, ?, ?, ?)";
+        PreparedStatement statement = connection.prepareStatement(setDataCity);
+        statement.setInt(1, city.getCityId());
+        statement.setString(2, city.getCityName());
+        statement.setInt(3, city.getCurrentTemperature());
+        statement.setInt(4, city.getCurrentHumidity());
+        statement.setInt(5, city.getCurrentWindSpeed());
+        statement.executeUpdate();
+        getConnection().close();
+        statement.close();
+    }
 
 }
