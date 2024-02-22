@@ -43,4 +43,12 @@ public class CityService {
         DatabaseManagement.deleteDataCity(DatabaseManagement.getDataCity().stream().filter(city1 -> city1.getCityName().equals(deleteName)).collect(Collectors.toList()).get(0).getCityName());
 
     }
+    public void searchCity() throws SQLException {
+        System.out.println("+-------------------------------------+");
+        System.out.println("|   Rechercher la météo d'une ville   |");
+        System.out.println("+-------------------------------------+");
+        System.out.println("City Name : ");
+        String searchName = scanner.nextLine();
+        System.out.println(DatabaseManagement.getDataCity().stream().filter(city1 -> city1.getCityName().equals(searchName)).collect(Collectors.toList()).get(0));
+    }
 }
