@@ -27,5 +27,10 @@ public class CityService {
         System.out.println("+-------------------------------------+");
         DatabaseManagement.setDataCity(setAddUpdateCity());
     }
-
+    public void updateCity() throws SQLException {
+        System.out.println("+-------------------------------------+");
+        System.out.println("|          Modifier une ville         |");
+        System.out.println("+-------------------------------------+");
+        DatabaseManagement.updateDataCity(setAddUpdateCity());
+    }
 }
