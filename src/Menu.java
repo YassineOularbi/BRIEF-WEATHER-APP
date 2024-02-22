@@ -1,8 +1,10 @@
+import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Menu {
     Scanner scanner = new Scanner(System.in);
-    public void menuInterface() {
+    CityService cityService = new CityService();
+    public void menuInterface() throws SQLException {
         int choix;
         do {
             System.out.println("+-------------------------------------+");
@@ -27,7 +29,7 @@ public class Menu {
             }
         }while (choix!=3);
     }
-    public void adminInterface(){
+    public void adminInterface() throws SQLException {
         int choixAdmin;
         do {
             System.out.println("+-------------------------------------+");
@@ -36,30 +38,36 @@ public class Menu {
             System.out.println("|  1 . Ajouter une nouvelle instance  |");
             System.out.println("|  2 . Modifier une  instance         |");
             System.out.println("|  3 . Supprimer une instance         |");
-            System.out.println("|  4 . Afficher les instances         |");
-            System.out.println("|  5 . Retourner a l'acceuil          |");
+            System.out.println("|  4 . Rechercher une instance        |");
+            System.out.println("|  5 . Afficher les instances         |");
+            System.out.println("|  6 . Retourner a l'acceuil          |");
             System.out.println("+-------------------------------------+");
             System.out.print("          Entrez un choix : ");
             choixAdmin = scanner.nextInt();
             switch (choixAdmin) {
                 case 1 :
+                    cityService.addCity();
                     break;
                 case 2:
+                    cityService.updateCity();
                     break;
                 case 3 :
+                    cityService.deleteCity();
                     break;
                 case 4 :
-
+                    cityService.searchCity();
                     break;
                 case 5 :
-                    menuInterface();
+                    cityService.displayCity();
+                    break;
+                case 6 :
                     break;
                 default:
                     break;
             }
-        }while (choixAdmin!=5);
+        }while (choixAdmin!=6);
     }
-    public void userInterface(){
+    public void userInterface() throws SQLException {
         int choixUser;
         do {
             System.out.println("+-------------------------------------+");

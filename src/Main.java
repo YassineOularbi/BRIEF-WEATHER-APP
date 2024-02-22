@@ -1,6 +1,8 @@
-public class Main {
-    public static void main(String[] args) {
+import java.sql.SQLException;
 
-        System.out.println("Hello world! Hello WEATHER APP");
+public class Main {
+    public static void main(String[] args) throws SQLException {
+        Menu menu = new Menu();
+        menu.menuInterface();
     }
 }

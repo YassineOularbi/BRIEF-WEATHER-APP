@@ -66,10 +66,10 @@ public class City {
 
     public String toString() {
         return "+----------- Ville id : " + cityId + " ----------+\n" +
-                "- name : " + cityName + "\n" +
-                "- Temperature : " + currentTemperature + " °C\n" +
-                "- Humidity : " + currentHumidity + " %\n" +
-                "- Wind Speed : " + currentWindSpeed + " Km/h\n" +
+                "- Nom : " + cityName + "\n" +
+                "- Température actuelle : " + currentTemperature + " °C\n" +
+                "- Humidité actuelle: " + currentHumidity + " %\n" +
+                "- Vitesse du vent actuelle : " + currentWindSpeed + " Km/h\n" +
                 "+-------------------------------------+";
     }
 }

@@ -51,4 +51,10 @@ public class CityService {
         String searchName = scanner.nextLine();
         System.out.println(DatabaseManagement.getDataCity().stream().filter(city1 -> city1.getCityName().equals(searchName)).collect(Collectors.toList()).get(0));
     }
+    public void displayCity() throws SQLException {
+        System.out.println("+-------------------------------------+");
+        System.out.println("|    Information météo des villes     |");
+        System.out.println("+-------------------------------------+");
+        DatabaseManagement.getDataCity().forEach(city -> System.out.println(city.toString()));
+    }
 }
