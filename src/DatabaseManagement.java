@@ -53,5 +53,15 @@ public class DatabaseManagement {
         getConnection().close();
         statement.close();
     }
+    public static void deleteDataCity(String name) throws SQLException {
+        Connection connection = getConnection();
+        String deleteDataCity = "DELETE FROM City WHERE cityName = ?";
+        PreparedStatement statement = connection.prepareStatement(deleteDataCity);
+        statement.setString(1, name);
+        statement.executeUpdate();
+        getConnection().close();
+        statement.close();
+        getDataCity();
+    }
 
 }
