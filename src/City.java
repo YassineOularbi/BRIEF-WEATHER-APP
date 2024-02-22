@@ -1,4 +1,4 @@
-public class City {
+public abstract class City {
     private Integer cityId;
     private String cityName;
     private Integer currentTemperature;
