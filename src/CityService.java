@@ -1,5 +1,6 @@
 import java.sql.SQLException;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class CityService {
     Scanner scanner = new Scanner(System.in);
@@ -32,5 +33,14 @@ public class CityService {
         System.out.println("|          Modifier une ville         |");
         System.out.println("+-------------------------------------+");
         DatabaseManagement.updateDataCity(setAddUpdateCity());
+    }
+    public void deleteCity() throws  SQLException {
+        System.out.println("+-------------------------------------+");
+        System.out.println("|         Supprimer une ville         |");
+        System.out.println("+-------------------------------------+");
+        System.out.println("| - Entrez le nom du ville à supprimer :");
+        String deleteName = scanner.nextLine();
+        DatabaseManagement.deleteDataCity(DatabaseManagement.getDataCity().stream().filter(city1 -> city1.getCityName().equals(deleteName)).collect(Collectors.toList()).get(0).getCityName());
+
     }
 }
