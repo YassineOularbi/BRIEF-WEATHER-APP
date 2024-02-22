@@ -40,5 +40,18 @@ public class DatabaseManagement {
         getConnection().close();
         statement.close();
     }
+    public static void updateDataCity(City city) throws SQLException {
+        Connection connection = getConnection();
+        String updateDataCity = "UPDATE City SET  cityName = ?, currentTemperature = ?, currentHumidity = ?, currentWindSpeed = ? WHERE cityId = ?";
+        PreparedStatement statement = connection.prepareStatement(updateDataCity);
+        statement.setString(1, city.getCityName());
+        statement.setInt(2, city.getCurrentTemperature());
+        statement.setInt(3, city.getCurrentHumidity());
+        statement.setInt(4, city.getCurrentWindSpeed());
+        statement.setInt(5, city.getCityId());
+        statement.executeUpdate();
+        getConnection().close();
+        statement.close();
+    }
 
 }
