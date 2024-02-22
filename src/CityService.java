@@ -47,7 +47,7 @@ public class CityService {
         System.out.println("+-------------------------------------+");
         System.out.println("|   Rechercher la météo d'une ville   |");
         System.out.println("+-------------------------------------+");
-        System.out.println("City Name : ");
+        System.out.println("| - Entrez le nom du ville à chercher :");
         String searchName = scanner.nextLine();
         System.out.println(DatabaseManagement.getDataCity().stream().filter(city1 -> city1.getCityName().equals(searchName)).collect(Collectors.toList()).get(0));
     }

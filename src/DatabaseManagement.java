@@ -63,5 +63,37 @@ public class DatabaseManagement {
         statement.close();
         getDataCity();
     }
-
+    public static ArrayList<CityHistory> getDataCityHistory() throws SQLException {
+        ArrayList<CityHistory> arrayCityHistory = new ArrayList<>();
+        Connection connection = getConnection();
+        String getDataCityHistory = "SELECT * FROM CityHistory";
+        try (PreparedStatement statement = connection.prepareStatement(getDataCityHistory);
+             ResultSet resultSet = statement.executeQuery()) {
+            while (resultSet.next()) {
+                CityHistory cityHistory = new CityHistory();
+                cityHistory.setHistoricalDataId(resultSet.getInt("historicalDataId"));
+                cityHistory.setCityId(resultSet.getInt("cityId"));
+                cityHistory.setEventDate(resultSet.getDate("eventDate").toLocalDate());
+                cityHistory.setHistoricalTemperature(resultSet.getInt("historicalTemperature"));
+                cityHistory.setHistoricalHumidity(resultSet.getInt("historicalHumidity"));
+                cityHistory.setHistoricalWindSpeed(resultSet.getInt("historicalWindSpeed"));
+                arrayCityHistory.add(cityHistory);
+            }
+        }
+        return arrayCityHistory;
+    }
+    public static void setDataCityHistory(CityHistory cityHistory) throws SQLException {
+        Connection connection = getConnection();
+        String setDataCityHistory = "INSERT INTO City (historicalDataId, cityId, eventDate, historicalTemperature, historicalHumidity, historicalWindSpeed) values (?, ?, ?, ?, ?, ?)";
+        PreparedStatement statement = connection.prepareStatement(setDataCityHistory);
+        statement.setInt(1, cityHistory.getHistoricalDataId());
+        statement.setInt(2, cityHistory.getCityId());
+        statement.setDate(3, Date.valueOf(cityHistory.getEventDate()));
+        statement.setInt(4, cityHistory.getHistoricalTemperature());
+        statement.setInt(5, cityHistory.getHistoricalHumidity());
+        statement.setInt(5, cityHistory.getHistoricalWindSpeed());
+        statement.executeUpdate();
+        getConnection().close();
+        statement.close();
+    }
 }
