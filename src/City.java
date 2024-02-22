@@ -4,12 +4,13 @@ public abstract class City {
     private Integer currentTemperature;
     private Integer currentHumidity;
     private Integer currentWindSpeed;
-    public City() {
-        this.cityId = null;
-        this.cityName = null;
-        this.currentTemperature = null;
-        this.currentHumidity = null;
-        this.currentWindSpeed = null;
+
+    public City(Integer cityId, String cityName, Integer currentTemperature, Integer currentHumidity, Integer currentWindSpeed) {
+        this.cityId = cityId;
+        this.cityName = cityName;
+        this.currentTemperature = currentTemperature;
+        this.currentHumidity = currentHumidity;
+        this.currentWindSpeed = currentWindSpeed;
     }
 
     public Integer getCityId() {
@@ -61,7 +62,12 @@ public abstract class City {
 
         this.currentWindSpeed = currentWindSpeed;
     }
-    @Override
+    public abstract void addCity();
+    public abstract void updateCity();
+    public abstract void deleteCity();
+    public abstract void searchCity();
+    public abstract void displayCity();
+
     public String toString() {
         return "+----------- Ville id : " + cityId + " ----------+\n" +
                 "- name : " + cityName + "\n" +

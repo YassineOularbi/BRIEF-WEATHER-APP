@@ -7,13 +7,14 @@ public abstract class CityHistory {
     private Integer historicalTemperature;
     private Integer historicalHumidity;
     private Integer historicalWindSpeed;
-    public CityHistory() {
-        this.historicalDataId = null;
-        this.cityId = null;
-        this.eventDate = null;
-        this.historicalTemperature = null;
-        this.historicalHumidity = null;
-        this.historicalWindSpeed = null;
+
+    public CityHistory(Integer historicalDataId, Integer cityId, LocalDate eventDate, Integer historicalTemperature, Integer historicalHumidity, Integer historicalWindSpeed) {
+        this.historicalDataId = historicalDataId;
+        this.cityId = cityId;
+        this.eventDate = eventDate;
+        this.historicalTemperature = historicalTemperature;
+        this.historicalHumidity = historicalHumidity;
+        this.historicalWindSpeed = historicalWindSpeed;
     }
 
     public Integer getHistoricalDataId() {
