@@ -4,6 +4,7 @@ import java.util.Scanner;
 public class Menu {
     Scanner scanner = new Scanner(System.in);
     CityService cityService = new CityService();
+    CityHistoryService cityHistoryService = new CityHistoryService();
     public void menuInterface() throws SQLException {
         int choix;
         do {

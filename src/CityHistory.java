@@ -73,4 +73,16 @@ public class CityHistory {
     public void setHistoricalWindSpeed(Integer historicalWindSpeed){
         this.historicalWindSpeed = historicalWindSpeed;
     }
+
+    @Override
+    public String toString() {
+        return "CityHistory{" +
+                "historicalDataId=" + historicalDataId +
+                ", cityId=" + cityId +
+                ", eventDate=" + eventDate +
+                ", historicalTemperature=" + historicalTemperature +
+                ", historicalHumidity=" + historicalHumidity +
+                ", historicalWindSpeed=" + historicalWindSpeed +
+                '}';
+    }
 }

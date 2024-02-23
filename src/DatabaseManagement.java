@@ -82,18 +82,4 @@ public class DatabaseManagement {
         }
         return arrayCityHistory;
     }
-    public static void setDataCityHistory(CityHistory cityHistory) throws SQLException {
-        Connection connection = getConnection();
-        String setDataCityHistory = "INSERT INTO City (historicalDataId, cityId, eventDate, historicalTemperature, historicalHumidity, historicalWindSpeed) values (?, ?, ?, ?, ?, ?)";
-        PreparedStatement statement = connection.prepareStatement(setDataCityHistory);
-        statement.setInt(1, cityHistory.getHistoricalDataId());
-        statement.setInt(2, cityHistory.getCityId());
-        statement.setDate(3, Date.valueOf(cityHistory.getEventDate()));
-        statement.setInt(4, cityHistory.getHistoricalTemperature());
-        statement.setInt(5, cityHistory.getHistoricalHumidity());
-        statement.setInt(5, cityHistory.getHistoricalWindSpeed());
-        statement.executeUpdate();
-        getConnection().close();
-        statement.close();
-    }
 }
