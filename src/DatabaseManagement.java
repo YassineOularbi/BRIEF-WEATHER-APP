@@ -96,4 +96,28 @@ public class DatabaseManagement {
         getConnection().close();
         statement.close();
     }
+    public static void updateDataCityHistory(CityHistory cityHistory) throws SQLException {
+        Connection connection = getConnection();
+        String updateDataCityHistory = "UPDATE CityHistory SET historicalDataId = ?, eventDate = ?, historicalTemperature = ?, historicalHumidity = ?, historicalWindSpeed = ? WHERE cityId = ?";
+        PreparedStatement statement = connection.prepareStatement(updateDataCityHistory);
+        statement.setInt(1, cityHistory.getHistoricalDataId());
+        statement.setDate(2, Date.valueOf(cityHistory.getEventDate()));
+        statement.setInt(3, cityHistory.getHistoricalTemperature());
+        statement.setInt(4, cityHistory.getHistoricalHumidity());
+        statement.setInt(5, cityHistory.getHistoricalWindSpeed());
+        statement.setInt(6, cityHistory.getCityId());
+        statement.executeUpdate();
+        getConnection().close();
+        statement.close();
+    }
+    public static void deleteDataCityHistory(Integer cityId) throws SQLException {
+        Connection connection = getConnection();
+        String deleteDataCityHistory = "DELETE FROM CityHistory WHERE cityId = ?";
+        PreparedStatement statement = connection.prepareStatement(deleteDataCityHistory);
+        statement.setInt(1, cityId);
+        statement.executeUpdate();
+        getConnection().close();
+        statement.close();
+        getDataCity();
+    }
 }
