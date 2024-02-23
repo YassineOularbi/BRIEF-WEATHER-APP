@@ -90,14 +90,19 @@ public class Menu {
                     choixHistory = scanner.nextInt();
                     switch (choixHistory) {
                         case 1 :
+                            cityHistoryService.addCityHistory();
                             break;
                         case 2:
+                            cityHistoryService.updateCityHistory();
                             break;
                         case 3 :
+                            cityHistoryService.deleteCityHistory();
                             break;
                         case 4 :
+                            cityHistoryService.searchCityHistory();
                             break;
                         case 5 :
+                            cityHistoryService.displayCityHistory();
                             break;
                         case 6 :
                             adminInterface();
