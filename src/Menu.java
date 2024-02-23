@@ -6,67 +6,111 @@ public class Menu {
     CityService cityService = new CityService();
     CityHistoryService cityHistoryService = new CityHistoryService();
     public void menuInterface() throws SQLException {
-        int choix;
-        do {
-            System.out.println("+-------------------------------------+");
-            System.out.println("|     Bienvenue dans WEATHER-APP      |");
-            System.out.println("+-------------------------------------+");
-            System.out.println("|   Vous etes Admin clickez sur : 1   |");
-            System.out.println("|Vous etes Utilisateur clickez sur : 2|");
-            System.out.println("|     Pour quitter clickez sur : 3    |");
-            System.out.println("+------------------------------------+");
-            System.out.print("          Entrez un choix : ");
-            choix = scanner.nextInt();
+        System.out.println("+-------------------------------------+");
+        System.out.println("|     Bienvenue dans WEATHER-APP      |");
+        System.out.println("+-------------------------------------+");
+        System.out.println("|     - Administrateur - > (Admin)    |");
+        System.out.println("|     - Utilisateur    - > (User)     |");
+        System.out.println("+------------------------------------+");
+        System.out.print("          Entrez un choix : ");
+        String choix = scanner.nextLine();
             switch (choix) {
-                case 1 :
+                case "Admin" :
                     adminInterface();
                     break;
-                case 2:
-                    break;
-                case 3 :
+                case "User" :
                     break;
                 default:
                     break;
             }
-        }while (choix!=3);
     }
     public void adminInterface() throws SQLException {
-        int choixAdmin;
-        do {
-            System.out.println("+-------------------------------------+");
-            System.out.println("|     Admin Interface WEATHER-APP     |");
-            System.out.println("+-------------------------------------+");
-            System.out.println("|  1 . Ajouter une nouvelle instance  |");
-            System.out.println("|  2 . Modifier une  instance         |");
-            System.out.println("|  3 . Supprimer une instance         |");
-            System.out.println("|  4 . Rechercher une instance        |");
-            System.out.println("|  5 . Afficher les instances         |");
-            System.out.println("|  6 . Retourner a l'acceuil          |");
-            System.out.println("+-------------------------------------+");
-            System.out.print("          Entrez un choix : ");
-            choixAdmin = scanner.nextInt();
-            switch (choixAdmin) {
-                case 1 :
-                    cityService.addCity();
-                    break;
-                case 2:
-                    cityService.updateCity();
-                    break;
-                case 3 :
-                    cityService.deleteCity();
-                    break;
-                case 4 :
-                    cityService.searchCity();
-                    break;
-                case 5 :
-                    cityService.displayCity();
-                    break;
-                case 6 :
-                    break;
-                default:
-                    break;
-            }
-        }while (choixAdmin!=6);
+        System.out.println("+-------------------------------------+");
+        System.out.println("|         Page administrateur         |");
+        System.out.println("+-------------------------------------+");
+        System.out.println("| - Gestion météo actuelle -> (City)  |");
+        System.out.println("| - Gestion d'historiques -> (History)|");
+        System.out.println("+------------------------------------+");
+        System.out.print("          Entrez un choix : ");
+        String choixAdmin = scanner.nextLine();
+        switch (choixAdmin) {
+            case "City" :
+                int choixCity;
+                do {
+                    System.out.println("+-------------------------------------+");
+                    System.out.println("|Gestion de la météo actuelle de ville|");
+                    System.out.println("+-------------------------------------+");
+                    System.out.println("|  1 . Ajouter la météo d'une ville   |");
+                    System.out.println("|  2 . Modifier la météo d'une ville  |");
+                    System.out.println("|  3 . Supprimer la météo d'une ville |");
+                    System.out.println("|  4 . Rechercher une ville           |");
+                    System.out.println("|  5 . Afficher les villes            |");
+                    System.out.println("|  6 . Retourner a l'acceuil          |");
+                    System.out.println("+-------------------------------------+");
+                    System.out.print("          Entrez un choix : ");
+                    choixCity = scanner.nextInt();
+                    switch (choixCity) {
+                        case 1 :
+                            cityService.addCity();
+                            break;
+                        case 2:
+                            cityService.updateCity();
+                            break;
+                        case 3 :
+                            cityService.deleteCity();
+                            break;
+                        case 4 :
+                            cityService.searchCity();
+                            break;
+                        case 5 :
+                            cityService.displayCity();
+                            break;
+                        case 6 :
+                            adminInterface();
+                            break;
+                        default:
+                            break;
+                    }
+                }while (choixCity!=6);
+                break;
+            case "History" :
+                int choixHistory;
+                do {
+                    System.out.println("+-------------------------------------+");
+                    System.out.println("| Gestion des historiques des villes  |");
+                    System.out.println("+-------------------------------------+");
+                    System.out.println("|  1 . Ajouter un historique          |");
+                    System.out.println("|  2 . Modifier un historique         |");
+                    System.out.println("|  3 . Supprimer un historique        |");
+                    System.out.println("|  4 . Rechercher un historique       |");
+                    System.out.println("|  5 . Afficher les historiques       |");
+                    System.out.println("|  6 . Retourner a l'acceuil          |");
+                    System.out.println("+-------------------------------------+");
+                    System.out.print("          Entrez un choix : ");
+                    choixHistory = scanner.nextInt();
+                    switch (choixHistory) {
+                        case 1 :
+                            break;
+                        case 2:
+                            break;
+                        case 3 :
+                            break;
+                        case 4 :
+                            break;
+                        case 5 :
+                            break;
+                        case 6 :
+                            adminInterface();
+                            break;
+                        default:
+                            break;
+                    }
+                }while (choixHistory!=6);
+                break;
+            default:
+                break;
+        }
+
     }
     public void userInterface() throws SQLException {
         int choixUser;
