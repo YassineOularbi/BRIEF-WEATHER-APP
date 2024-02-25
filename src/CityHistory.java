@@ -7,6 +7,7 @@ public class CityHistory {
     private Integer historicalTemperature;
     private Integer historicalHumidity;
     private Integer historicalWindSpeed;
+    private String cityName;
     public CityHistory() {
         this.historicalDataId = null;
         this.cityId = null;
@@ -14,11 +15,20 @@ public class CityHistory {
         this.historicalTemperature = null;
         this.historicalHumidity = null;
         this.historicalWindSpeed = null;
+        this.cityName = null;
     }
 
     public Integer getHistoricalDataId() {
 
         return historicalDataId;
+    }
+
+    public String getCityName() {
+        return cityName;
+    }
+
+    public void setCityName(String cityName) {
+        this.cityName = cityName;
     }
 
     public void setHistoricalDataId(Integer historicalDataId) {
@@ -70,19 +80,21 @@ public class CityHistory {
         return historicalWindSpeed;
     }
 
+
     public void setHistoricalWindSpeed(Integer historicalWindSpeed){
         this.historicalWindSpeed = historicalWindSpeed;
     }
 
     @Override
     public String toString() {
-        return "CityHistory{" +
-                "historicalDataId=" + historicalDataId +
-                ", cityId=" + cityId +
-                ", eventDate=" + eventDate +
-                ", historicalTemperature=" + historicalTemperature +
-                ", historicalHumidity=" + historicalHumidity +
-                ", historicalWindSpeed=" + historicalWindSpeed +
-                '}';
+        return "+----------- Historique Id : " + historicalDataId + " ----------+\n" +
+                "- Ville Id : " + cityId + "\n" +
+                "- Nom : " + cityName + "\n" +
+                "- Date de l'événement : " + eventDate + "\n" +
+                "- Température historique : " + historicalTemperature + " °C\n" +
+                "- Humidité historique : " + historicalHumidity + " %\n" +
+                "- Vitesse du vent historique : " + historicalWindSpeed + " Km/h\n" +
+                "+-------------------------------------+";
     }
+
 }

@@ -1,65 +1,118 @@
 import java.sql.SQLException;
 import java.util.Scanner;
 import java.time.LocalDate;
-import java.util.stream.Collectors;
 
 public class CityHistoryService {
     Scanner scanner = new Scanner(System.in);
-    public CityHistory setAddUpdateCityHistory() {
-        CityHistory cityHistory = new CityHistory();
-        System.out.println("| - Entrez l'identification de l'Historique du ville : ");
-        cityHistory.setHistoricalDataId(scanner.nextInt());
-        scanner.nextLine();
-        System.out.println("| - Entrez l'identification de la ville : ");
-        cityHistory.setCityId(scanner.nextInt());
-        scanner.nextLine();
-        System.out.println("| - Entrez la date de l'événement : ");
+
+    public void interfaceCityHistory(CityHistory cityHistory) {
+        System.out.println("| - Entrez le nom de la ville : ");
+        cityHistory.setCityName(scanner.nextLine());
+        System.out.println("| - Entrez la date exacte de l'événement : ");
         String eventDate = scanner.nextLine();
         cityHistory.setEventDate(LocalDate.parse(eventDate));
-        System.out.println("| - Entrez la température actuelle : ");
+        System.out.println("| - Entrez la température : ");
         cityHistory.setHistoricalTemperature(scanner.nextInt());
         scanner.nextLine();
-        System.out.println("| - Entrez l'humidité actuelle : ");
+        System.out.println("| - Entrez l'humidité : ");
         cityHistory.setHistoricalHumidity(scanner.nextInt());
         scanner.nextLine();
-        System.out.println("| - Entrez la vitesse du vent actuelle : ");
+        System.out.println("| - Entrez la vitesse du vent : ");
         cityHistory.setHistoricalWindSpeed(scanner.nextInt());
         scanner.nextLine();
-        return cityHistory;
     }
+
     public void addCityHistory() throws SQLException {
+        CityHistory cityHistory = new CityHistory();
         System.out.println("+-------------------------------------+");
-        System.out.println("|     Ajouter un Historique ville     |");
+        System.out.println("|      Ajouter un historique ville    |");
         System.out.println("+-------------------------------------+");
-        DatabaseManagement.setDataCityHistory(setAddUpdateCityHistory());
+        interfaceCityHistory(cityHistory);
+        if(!DatabaseManagement.checkCity(cityHistory.getCityName())) {
+            System.out.println("+-------------------------------------+");
+            System.out.println("|       Cette ville n'existe pas      |");
+            System.out.println("+-------------------------------------+");
+        } else if(DatabaseManagement.setDataCityHistory(cityHistory)){
+            System.out.println("+-----------------------------------------------+");
+            System.out.println("|   Le numéro d'identification doit être unique |");
+            System.out.println("+-----------------------------------------------+");
+        } else {
+            System.out.println("+-------------------------------------+");
+            System.out.println("| L'historique a été ajouté avec succès |");
+            System.out.println("+-------------------------------------+");
+        }
     }
-    public void updateCityHistory() throws SQLException, SQLException {
+
+    public void updateCityHistory() throws SQLException {
+        CityHistory cityHistory = new CityHistory();
         System.out.println("+-------------------------------------+");
         System.out.println("|     Modifier un historique ville    |");
         System.out.println("+-------------------------------------+");
-        DatabaseManagement.updateDataCityHistory(setAddUpdateCityHistory());
+        System.out.println("| - Entrez l'identification d'historique : ");
+        cityHistory.setHistoricalDataId(scanner.nextInt());
+        scanner.nextLine();
+        interfaceCityHistory(cityHistory);
+        if(!DatabaseManagement.checkCityHistory(cityHistory.getCityName())) {
+            System.out.println("+-------------------------------------+");
+            System.out.println("|      Cette ville n'existe pas       |");
+            System.out.println("+-------------------------------------+");
+        } else if (DatabaseManagement.updateDataCityHistory(cityHistory)){
+            System.out.println("+-------------------------------------+");
+            System.out.println("|     Cet historique n'existe pas     |");
+            System.out.println("+-------------------------------------+");
+        } else {
+            System.out.println("+-------------------------------------+");
+            System.out.println("| L'historique a été modifié avec succès |");
+            System.out.println("+-------------------------------------+");
+        }
     }
+
     public void deleteCityHistory() throws  SQLException {
         System.out.println("+-------------------------------------+");
-        System.out.println("|    Supprimer un histrorique ville   |");
+        System.out.println("|    Supprimer un historique ville    |");
         System.out.println("+-------------------------------------+");
-        System.out.println("| - Entrez l'identification de l'historique :");
-        Integer deleteId = scanner.nextInt();
-        DatabaseManagement.deleteDataCityHistory(DatabaseManagement.getDataCityHistory().stream().filter(city1 -> city1.getHistoricalDataId().equals(deleteId)).collect(Collectors.toList()).get(0).getHistoricalDataId());
-
+        System.out.println("| - Entrez le nom de la ville à supprimer :");
+        String deleteHistory = scanner.nextLine();
+        if(DatabaseManagement.checkCityHistory(deleteHistory)) {
+            System.out.println("| - Entrez l'identification de l'historique : ");
+            Integer historicalId = scanner.nextInt();
+            if (DatabaseManagement.deleteDataCityHistory(deleteHistory, historicalId)) {
+                System.out.println("+-------------------------------------+");
+                System.out.println("|        Aucun historique trouvé      |");
+                System.out.println("+-------------------------------------+");
+            } else {
+                System.out.println("+-----------------------------------------+");
+                System.out.println("| L'historique a été supprimé avec succès |");
+                System.out.println("+-----------------------------------------+");
+            }
+        }
     }
+
     public void searchCityHistory() throws SQLException {
         System.out.println("+-------------------------------------+");
         System.out.println("|   Rechercher un historique ville    |");
         System.out.println("+-------------------------------------+");
-        System.out.println("| - Entrez l'identification de la ville :");
-        Integer searchId = scanner.nextInt();
-        System.out.println(DatabaseManagement.getDataCityHistory().stream().filter(cityHistory -> cityHistory.getHistoricalDataId().equals(searchId)).collect(Collectors.toList()).get(0));
+        System.out.println("| - Entrez le nom de la ville :");
+        String searchName = scanner.nextLine();
+        if(DatabaseManagement.checkCityHistory(searchName)){
+            DatabaseManagement.searchDataHistory(searchName);
+        } else {
+            System.out.println("+-------------------------------------+");
+            System.out.println("|        Aucun historique trouvé      |");
+            System.out.println("+-------------------------------------+");
+        }
     }
+
     public void displayCityHistory() throws SQLException {
-        System.out.println("+-------------------------------------+");
-        System.out.println("|        Historique des villes        |");
-        System.out.println("+-------------------------------------+");
-        DatabaseManagement.getDataCityHistory().forEach(cityHistory -> System.out.println(cityHistory.toString()));
+        if (DatabaseManagement.getDataCityHistory().isEmpty()){
+            System.out.println("+-------------------------------------+");
+            System.out.println("|   Aucun historique pour l'instant   |");
+            System.out.println("+-------------------------------------+");
+        } else {
+            System.out.println("+-------------------------------------+");
+            System.out.println("|       Historique des villes         |");
+            System.out.println("+-------------------------------------+");
+            DatabaseManagement.getDataCityHistory().forEach(System.out::println);
+        }
     }
 }
