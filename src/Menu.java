@@ -184,6 +184,9 @@ public class Menu {
                     } while (choixHistory != 6);
                     break;
                 case 3 :
+                    System.out.println("+-------------------------------------+");
+                    System.out.println("|            Au revoir !              |");
+                    System.out.println("+-------------------------------------+");
                     menuInterface();
                     break;
                 default:

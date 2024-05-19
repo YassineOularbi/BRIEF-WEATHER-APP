@@ -6,7 +6,7 @@ public class DatabaseManagement {
     static LocalDate currentDate = LocalDate.now();
     private static final String url = "jdbc:mysql://localhost:3306/data_Weather";
     private static final String username = "root";
-    private static final String password = "YWOLF123@";
+    private static final String password = "VANWOLFDEV123@";
 
     private static Connection getConnection() throws SQLException {
         return DriverManager.getConnection(url, username, password);
@@ -248,5 +248,23 @@ public class DatabaseManagement {
         searchArrayHistory.forEach(System.out::println);
         connection.close();
         statement.close();
+    }
+
+    public static void getCityHumidity() throws SQLException {
+        ArrayList<City> arrayHumidity = new ArrayList<>();
+        Connection connection = getConnection();
+        String getCityHumidity = "SELECT * FROM City where currentHumidity >= 30";
+        PreparedStatement statement = connection.prepareStatement(getCityHumidity);
+        ResultSet resultSet = statement.executeQuery();
+        while (resultSet.next()){
+            City city = new City();
+            city.setCityName(resultSet.getString("cityName"));
+            city.setCityId(resultSet.getInt("cityId"));
+            city.setCurrentTemperature(resultSet.getInt("currentTemperature"));
+            city.setCurrentHumidity(resultSet.getInt("currentHumidity"));
+            city.setCurrentHumidity(resultSet.getInt("currentWindSpeed"));
+
+        }
+        arrayHumidity.stream().map(city -> city.getCityName()).forEach(name -> System.out.println("Name"+name));
     }
 }
